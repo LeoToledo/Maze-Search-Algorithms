@@ -183,5 +183,34 @@ class Maze:
         self.draw_maze(n_list)
         time.sleep(0.1)
         
+      
+    #Lazy way of correcting a bug on printing the goal in green color
+    def update_maze_for_astar(self, n_list, o_n_list, i, j, init_pos, end_pos):
+        old_i = 2
+        old_j = 2
+         
+        n_list[init_pos[0]][init_pos[1]] = 2
+        n_list[end_pos[0]][end_pos[1]] = 3
+        
+        if(i == 0 and j == 0):
+            old_i = i
+            old_j = j
+            n_list[i][j] = 2
+                 
+        
+        else:
+            n_list[old_i][old_j] = o_n_list[old_i][old_j]
+            old_i = i
+            old_j = j
+            n_list[i][j] = 2
+            
+         
+        self.draw_maze(n_list)
+        
+        n_list[end_pos[0]][end_pos[1]] = 1
+        time.sleep(0.1)
+        
+        
+        
         
 
